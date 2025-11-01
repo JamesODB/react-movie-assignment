@@ -14,6 +14,7 @@ import AddMovieReviewPage from './pages/addMovieReviewPage';
 import PopularMoviesPage from "./pages/popularMoviesPage";
 import TopRatedMoviesPage from "./pages/topRatedMoviesPage";
 import NowPlayingMoviesPage from "./pages/nowPlayingMoviesPage";
+import MovieCreditsPage from "./pages/movieCreditsPage";
 
 
 
