@@ -24,12 +24,11 @@ const SiteHeader = () => {
   const menuOptions = [
   { label: "Home", path: "/" },
   { label: "Favorites", path: "/movies/favorites" },
-  { label: "Trending", path: "/trending" },
+  { label: "Trending", path: "/movies/trending" },
   { label: "Popular", path: "/popular" },
-  { label: "Top Rated", path: "/top-rated" },
-  { label: "Now Playing", path: "/now-playing" },
-  { label: "Recommendations", path: "/movies/550/recommendations" },
+  { label: "Bookmarks", path: "/movies/bookmarks" },
 ];
+
 
 
   const handleMenuSelect = (pageURL) => {
