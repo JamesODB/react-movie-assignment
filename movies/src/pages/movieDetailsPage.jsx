@@ -1,8 +1,8 @@
 import React from "react";
-import { useParams } from "react-router";
+import { useParams, Link } from "react-router";
 import MovieDetails from "../components/movieDetails/";
 import PageTemplate from "../components/templateMoviePage";
-import { getMovie, getMovieCredits } from "../api/tmdb-api";
+import { getMovie } from "../api/tmdb-api";
 import { useQuery } from "@tanstack/react-query";
 import Spinner from "../components/spinner";
 
@@ -10,48 +10,61 @@ const MoviePage = () => {
   const { id } = useParams();
 
   const { data: movie, error, isPending, isError } = useQuery({
-    queryKey: ["movie", { id }],
+    queryKey: ["movie", { id: id }],
     queryFn: getMovie,
   });
 
-  const { data: credits, isPending: isCreditsLoading } = useQuery({
-    queryKey: ["movieCredits", { id }],
-    queryFn: getMovieCredits,
-  });
-
-  if (isPending || isCreditsLoading) return <Spinner />;
+  if (isPending) return <Spinner />;
   if (isError) return <h1>{error.message}</h1>;
 
   return (
     <>
       {movie ? (
-        <PageTemplate movie={movie}>
-          <MovieDetails movie={movie} />
-
-          {credits && (
-            <div style={{ marginTop: "2rem" }}>
-              <h3>Cast</h3>
-              <ul>
-                {credits.cast.slice(0, 10).map((member) => (
-                  <li key={member.cast_id}>
-                    {member.name} — {member.character}
-                  </li>
-                ))}
-              </ul>
-
-              <h3>Crew</h3>
-              <ul>
-                {credits.crew.slice(0, 10).map((member) => (
-                  <li key={member.credit_id}>
-                    {member.name} — {member.job}
-                  </li>
-                ))}
-              </ul>
+        <>
+          <PageTemplate movie={movie}>
+            <MovieDetails movie={movie} />
+            <div
+              style={{
+                display: "flex",
+                gap: "12px",
+                marginTop: "20px",
+              }}
+            >
+              <Link to={`/movies/${movie.id}/credits`}>
+                <button
+                  style={{
+                    backgroundColor: "#1976d2",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    padding: "10px 16px",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                  }}
+                >
+                  View Credits
+                </button>
+              </Link>
+              <Link to={`/movies/${movie.id}/recommendations`}>
+                <button
+                  style={{
+                    backgroundColor: "#1976d2",
+                    color: "white",
+                    border: "none",
+                    borderRadius: "8px",
+                    padding: "10px 16px",
+                    fontSize: "16px",
+                    cursor: "pointer",
+                  }}
+                >
+                  View Recommendations
+                </button>
+              </Link>
             </div>
-          )}
-        </PageTemplate>
+          </PageTemplate>
+        </>
       ) : (
-        <p>Waiting for movie details...</p>
+        <p>Waiting for movie details</p>
       )}
     </>
   );

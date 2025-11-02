@@ -22,13 +22,15 @@ const SiteHeader = () => {
   const navigate = useNavigate();
 
   const menuOptions = [
-    { label: "Home", path: "/" },
-    { label: "Favorites", path: "/movies/favorites" },
-    { label: "Trending", path: "/trending" },
-    { label: "Popular Movies", path: "/popular" },
-    { label: "Top Rated", path: "/top-rated" },
-    { label: "Now Playing", path: "/now-playing" },
-  ];
+  { label: "Home", path: "/" },
+  { label: "Favorites", path: "/movies/favorites" },
+  { label: "Trending", path: "/trending" },
+  { label: "Popular", path: "/popular" },
+  { label: "Top Rated", path: "/top-rated" },
+  { label: "Now Playing", path: "/now-playing" },
+  { label: "Recommendations", path: "/movies/550/recommendations" },
+];
+
 
   const handleMenuSelect = (pageURL) => {
     setAnchorEl(null);
