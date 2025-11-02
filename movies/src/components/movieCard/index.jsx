@@ -20,9 +20,16 @@ import Box from "@mui/material/Box";
 import img from "../../images/film-poster-placeholder.png";
 
 export default function MovieCard({ movie, action }) {
-  const { favorites, addToFavorites, removeFromFavorites, bookmarks, addToBookmarks, removeFromBookmarks } = useContext(MoviesContext);
-  const releaseDate = new Date(movie.release_date);
+  const {
+    favorites,
+    addToFavorites,
+    removeFromFavorites,
+    bookmarks,
+    addToBookmarks,
+    removeFromBookmarks,
+  } = useContext(MoviesContext);
 
+  const releaseDate = new Date(movie.release_date);
   const isFavorite = favorites.includes(movie.id);
   const isBookmarked = bookmarks.some((m) => m.id === movie.id);
 
@@ -47,7 +54,7 @@ export default function MovieCard({ movie, action }) {
           ) : null
         }
         title={
-          <Typography variant="h5" component="p">
+          <Typography variant="h6" component="p" noWrap>
             {movie.title}
           </Typography>
         }
